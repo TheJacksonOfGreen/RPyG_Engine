@@ -1,0 +1,19 @@
+How to Use RPyG:
+
+MAPS
+To create a new map, copy the "testRoom.json" file, then rename the file to your liking and edit the json file as follows:
+
+Inside the "tiles" area, each section is a tile. Here is a guide to editing tiles: 
+
+{
+	"x": 40,							<--- This says how many pixels from the left the tile will generate.
+	"y": 0,								<--- This says how many pixels from the top the tile will generate.
+	"spriteWidth": 40,					<--- This says how wide the tile is.
+	"spriteHeight": 40,					<--- This says how tall the tile is.
+	"image": "Images/Door.png",			<--- This says what image to use for the tile.
+	"passable": true,					<--- This says whether or not the player can walk through the tile.
+	"door": true,						<--- This says whether or not the tile will teleport you somewhere else.
+	"tpRoom": "Rooms/emptyRoom.json",	<--- ONLY REQUIRED IF DOOR IS TRUE: This says what room to teleport the player to.
+	"tpX": 80,							<--- ONLY REQUIRED IF DOOR IS TRUE: This says how many pixels from the left the player should end up.
+	"tpY": 40							<--- ONLY REQUIRED IF DOOR IS TRUE: This says how many pixels from the top the player should end up.
+}
