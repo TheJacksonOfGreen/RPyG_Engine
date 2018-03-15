@@ -2,6 +2,7 @@
 
 import pygame, sys, json
 from basecharacters import Hero
+from basecharacters import WanderNPC
 
 pygame.init()
 screenWidth = 640
@@ -85,7 +86,8 @@ def tilesFromRoom(room):
 	return tiles
 
 hero = Hero()
-objects = []
+wanderer = WanderNPC()
+objects = [wanderer]
 tiles = []
 
 def matchTilesToRoom(room):
@@ -234,6 +236,16 @@ def updateState(state, events, elapsedTicks, ticksToAnimate):
 				state.GOTOy = 0
 			if state.GOTOy > (screenHeight - state.spriteHeight):
 				state.GOTOy = (screenHeight - state.spriteHeight)
+			# Do the extra stuff with WanderNPC's borders
+			if state.tag == "WanderNPC":
+				if state.GOTOx < state.leftBorder:
+					state.GOTOx = state.leftBorder
+				if state.GOTOx > state.rightBorder:
+					state.GOTOx = (state.rightBorder - state.spriteWidth)
+				if state.GOTOy < state.topBorder:
+					state.GOTOy = state.topBorder
+				if state.GOTOy > state.bottomBorder:
+					state.GOTOy = (state.bottomBorder - state.spriteHeight)
 			# Collision Detection with Objects
 			collidedWith = checkForCollision(state, tiles)
 			for collidingState in collidedWith:
@@ -291,8 +303,9 @@ while quitgame == False:
 	updateScreen(hero, objects, tiles)
 	keysPressed, quitgame = checkForInput()
 	hero, ticksToAnimate = updateState(hero, keysPressed, elapsedTicks, ticksToAnimate)
-	# for object in objects:
-	# 	object, ticksToAnimate = updateState(object, keysPressed, elapsedTicks, ticksToAnimate)
+	for object in objects:
+		objectEvents = object.nextAction()
+		object, ticksToAnimate = updateState(object, objectEvents, elapsedTicks, ticksToAnimate)
 	elapsedTicks = pygame.time.get_ticks() - currentTicks
 	currentTicks = pygame.time.get_ticks()
 	if hero.isMoving == True:

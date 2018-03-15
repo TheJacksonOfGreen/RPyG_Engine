@@ -2,23 +2,37 @@
 
 import random, pygame
 
-MARIO_B_Idle = pygame.image.load("Images/Mario/B_Idle.png")
-MARIO_R_Idle = pygame.image.load("Images/Mario/R_Idle.png")
-MARIO_L_Idle = pygame.image.load("Images/Mario/L_Idle.png")
-MARIO_F_Idle = pygame.image.load("Images/Mario/F_Idle.png")
-MARIO_B_Walk1 = pygame.image.load("Images/Mario/B_Walk1.png")
-MARIO_R_Walk1 = pygame.image.load("Images/Mario/R_Walk1.png")
-MARIO_L_Walk1 = pygame.image.load("Images/Mario/L_Walk1.png")
-MARIO_F_Walk1 = pygame.image.load("Images/Mario/F_Walk1.png")
-MARIO_B_Walk2 = pygame.image.load("Images/Mario/B_Walk2.png")
-MARIO_R_Walk2 = pygame.image.load("Images/Mario/R_Walk2.png")
-MARIO_L_Walk2 = pygame.image.load("Images/Mario/L_Walk2.png")
-MARIO_F_Walk2 = pygame.image.load("Images/Mario/F_Walk2.png")
+Pete_B_Idle = pygame.image.load("Images/Pete/B_Idle.png")
+Pete_R_Idle = pygame.image.load("Images/Pete/R_Idle.png")
+Pete_L_Idle = pygame.image.load("Images/Pete/L_Idle.png")
+Pete_F_Idle = pygame.image.load("Images/Pete/F_Idle.png")
+Pete_B_Walk1 = pygame.image.load("Images/Pete/B_Walk1.png")
+Pete_R_Walk1 = pygame.image.load("Images/Pete/R_Walk1.png")
+Pete_L_Walk1 = pygame.image.load("Images/Pete/L_Walk1.png")
+Pete_F_Walk1 = pygame.image.load("Images/Pete/F_Walk1.png")
+Pete_B_Walk2 = pygame.image.load("Images/Pete/B_Walk2.png")
+Pete_R_Walk2 = pygame.image.load("Images/Pete/R_Walk2.png")
+Pete_L_Walk2 = pygame.image.load("Images/Pete/L_Walk2.png")
+Pete_F_Walk2 = pygame.image.load("Images/Pete/F_Walk2.png")
+
+REDTOAD_B_Idle = pygame.image.load("Images/RedToad/B_Idle.png")
+REDTOAD_R_Idle = pygame.image.load("Images/RedToad/R_Idle.png")
+REDTOAD_L_Idle = pygame.image.load("Images/RedToad/L_Idle.png")
+REDTOAD_F_Idle = pygame.image.load("Images/RedToad/F_Idle.png")
+REDTOAD_B_Walk1 = pygame.image.load("Images/RedToad/B_Walk1.png")
+REDTOAD_R_Walk1 = pygame.image.load("Images/RedToad/R_Walk1.png")
+REDTOAD_L_Walk1 = pygame.image.load("Images/RedToad/L_Walk1.png")
+REDTOAD_F_Walk1 = pygame.image.load("Images/RedToad/F_Walk1.png")
+REDTOAD_B_Walk2 = pygame.image.load("Images/RedToad/B_Walk2.png")
+REDTOAD_R_Walk2 = pygame.image.load("Images/RedToad/R_Walk2.png")
+REDTOAD_L_Walk2 = pygame.image.load("Images/RedToad/L_Walk2.png")
+REDTOAD_F_Walk2 = pygame.image.load("Images/RedToad/F_Walk2.png")
 
 # Base Class for all characters.
 class Character():
 	x = 0
 	y = 0
+	tag = None
 	GOTOx = 0
 	GOTOy = 0
 	facing = "Down"
@@ -27,7 +41,7 @@ class Character():
 	spriteWidth = 22
 	spriteHeight = 37
 	animateFrame = 0
-	framerate = 15
+	framerate = 12
 	isMoving = False
 	# animations = []
 	# image = None
@@ -36,11 +50,12 @@ class Character():
 
 # The character controlled by the player. 
 class Hero(Character):
-	animations = [[MARIO_B_Idle, MARIO_B_Walk1, MARIO_B_Idle, MARIO_B_Walk2], 
-				  [MARIO_R_Idle, MARIO_R_Walk1, MARIO_R_Idle, MARIO_R_Walk2], 
-				  [MARIO_L_Idle, MARIO_L_Walk1, MARIO_L_Idle, MARIO_L_Walk2], 
-				  [MARIO_F_Idle, MARIO_F_Walk1, MARIO_F_Idle, MARIO_F_Walk2]]
-	image = MARIO_F_Idle
+	animations = [[Pete_B_Idle, Pete_B_Walk1, Pete_B_Idle, Pete_B_Walk2], 
+				  [Pete_R_Idle, Pete_R_Walk1, Pete_R_Idle, Pete_R_Walk2], 
+				  [Pete_L_Idle, Pete_L_Walk1, Pete_L_Idle, Pete_L_Walk2], 
+				  [Pete_F_Idle, Pete_F_Walk1, Pete_F_Idle, Pete_F_Walk2]]
+	image = Pete_F_Idle
+	tag = "Hero"
 	x = 50
 	y = 50
 	GOTOx = 50
@@ -58,20 +73,24 @@ class Hero(Character):
 		return currentEvents
 
 # An NPC that wanders around randomly within a box defined by the four border variables.
-# TODO: Non-Mario Graphics (Maybe a Toad?)
 class WanderNPC(Character):
-	animations = [[MARIO_B_Idle, MARIO_B_Walk1, MARIO_B_Idle, MARIO_B_Walk2], 
-				  [MARIO_R_Idle, MARIO_R_Walk1, MARIO_R_Idle, MARIO_R_Walk2], 
-				  [MARIO_L_Idle, MARIO_L_Walk1, MARIO_L_Idle, MARIO_L_Walk2], 
-				  [MARIO_F_Idle, MARIO_F_Walk1, MARIO_F_Idle, MARIO_F_Walk2]]
-	image = MARIO_F_Idle
-	topBorder = 0
-	rightBorder = 0
-	bottomBorder = 0
-	leftBorder = 0
-	def nextAction(self, keysPressed):
+	animations = [[REDTOAD_B_Idle, REDTOAD_B_Walk1, REDTOAD_B_Idle, REDTOAD_B_Walk2], 
+				  [REDTOAD_R_Idle, REDTOAD_R_Walk1, REDTOAD_R_Idle, REDTOAD_R_Walk2], 
+				  [REDTOAD_L_Idle, REDTOAD_L_Walk1, REDTOAD_L_Idle, REDTOAD_L_Walk2], 
+				  [REDTOAD_F_Idle, REDTOAD_F_Walk1, REDTOAD_F_Idle, REDTOAD_F_Walk2]]
+	image = REDTOAD_R_Idle
+	tag = "WanderNPC"
+	topBorder = 450
+	bottomBorder = 550
+	leftBorder = 225
+	rightBorder = 325
+	x = 450
+	y = 325
+	GOTOx = 450
+	GOTOy = 325
+	def nextAction(self):
 		events = []
-		goIn = random.randint(1,4)
+		goIn = random.randint(1,6)
 		if goIn == 1:
 			events.append("Up")
 		if goIn == 2:
