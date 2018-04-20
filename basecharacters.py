@@ -80,23 +80,24 @@ class WanderNPC(Character):
 				  [REDTOAD_F_Idle, REDTOAD_F_Walk1, REDTOAD_F_Idle, REDTOAD_F_Walk2]]
 	image = REDTOAD_R_Idle
 	tag = "WanderNPC"
-	topBorder = 450
-	bottomBorder = 550
-	leftBorder = 225
-	rightBorder = 325
-	x = 450
-	y = 325
-	GOTOx = 450
-	GOTOy = 325
+	topBorder = 250
+	bottomBorder = 450
+	leftBorder = 250
+	rightBorder = 450
+	wanderSpeed = 100
+	x = 350
+	y = 350
+	GOTOx = 350
+	GOTOy = 350
 	def nextAction(self):
 		events = []
-		goIn = random.randint(1,6)
-		if goIn == 1:
+		goIn = random.randint(1,self.wanderSpeed)
+		if goIn == 1 and self.facing != "Down":
 			events.append("Up")
-		if goIn == 2:
+		if goIn == 2 and self.facing != "Left":
 			events.append("Right")
-		if goIn == 3:
+		if goIn == 3 and self.facing != "Up":
 			events.append("Down")
-		if goIn == 4:
+		if goIn == 4 and self.facing != "Right":
 			events.append("Left")
 		return events

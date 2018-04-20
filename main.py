@@ -103,11 +103,11 @@ def logPosition(state):
 # Update The Screen
 def updateScreen(hero, objects, tiles):
 	screen.fill([255, 255, 255])
-	for state in objects:
-		screen.blit(state.image, [state.x, state.y])
 	for state in tiles:
 		screen.blit(state['image'], [state['x'], state['y']])
 	screen.blit(hero.image, [hero.x, hero.y])
+	for state in objects:
+		screen.blit(state.image, [state.x, state.y])
 	pygame.display.flip()
 
 # Check For Input
@@ -249,7 +249,7 @@ def updateState(state, events, elapsedTicks, ticksToAnimate):
 			# Collision Detection with Objects
 			collidedWith = checkForCollision(state, tiles)
 			for collidingState in collidedWith:
-				if 'door' in collidingState.keys() and collidingState['door'] == True:
+				if 'door' in collidingState.keys() and collidingState['door'] == True and state.tag == "Hero":
 					roomToUse = loadRoomFromCache(collidingState['tpRoom'])
 					matchTilesToRoom(roomToUse)
 					state.x = collidingState['tpX']

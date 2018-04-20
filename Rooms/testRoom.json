@@ -15,14 +15,23 @@
 			"spriteWidth": 40,
 			"spriteHeight": 40,
 			"image": "Images/Tiles/WoodFloor.png",
-			"passable": false,
+			"passable": true,
 			"door": false
 		}, 
 		{
 			"x": 49,
 			"y": 0,
-			"spriteWidth": 40,
+			"spriteWidth": 23,
 			"spriteHeight": 40,
+			"image": "Images/Tiles/Door.png",
+			"passable": true,
+			"door": false
+		}, 
+		{
+			"x": 49,
+			"y": 0,
+			"spriteWidth": 23,
+			"spriteHeight": 10,
 			"image": "Images/Tiles/Door.png",
 			"passable": false,
 			"door": true,
