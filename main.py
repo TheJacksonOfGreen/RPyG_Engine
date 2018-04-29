@@ -4,6 +4,8 @@ import pygame, sys, json
 from basecharacters import Hero
 from basecharacters import WanderNPC
 
+# DAMAGE FORMULA: int((ATTACKBASE*USERATTACK)-(TARGETDEF/2))
+
 pygame.init()
 screenWidth = 640
 screenHeight = 480
@@ -15,7 +17,6 @@ roomCache = {}
 def loadImagesFromCache(tiles):
 	global imageCache
 	for tile in tiles:
-		#print tile['image']
 		# Replace the image pathways referenced in our room file with Pygame Surfaces.
 		if tile['image'] in imageCache.keys():
 			tile['image'] = imageCache[tile['image']]
@@ -27,7 +28,6 @@ def loadImagesFromCache(tiles):
 				imageToBeAdded = tile['image']
 			imageCache[tile['image']] = imageToBeAdded
 			tile['image'] = imageToBeAdded
-	#print "Done"
 
 # Forces the passed in dictionary to use ASCII strings, not Unicode
 def ascii_encode_dict(data):
@@ -98,7 +98,7 @@ matchTilesToRoom(testRoom)
 
 # Debugging Position
 def logPosition(state):
-	print "(" + str(state.x) + ", " + str(state.y) + ") -> (" + str(state.GOTOx) + ", " + str(state.GOTOy) + ")"
+	print "(" + str(state.x) + ", " + str(state.y) + ") -> (" + str(state.GOTOx) + ", " + str(state.GOTOy) + "), Facing " + state.facing
 
 # Update The Screen
 def updateScreen(hero, objects, tiles):
@@ -240,11 +240,11 @@ def updateState(state, events, elapsedTicks, ticksToAnimate):
 			if state.tag == "WanderNPC":
 				if state.GOTOx < state.leftBorder:
 					state.GOTOx = state.leftBorder
-				if state.GOTOx > state.rightBorder:
+				if state.GOTOx > (state.rightBorder - state.spriteWidth):
 					state.GOTOx = (state.rightBorder - state.spriteWidth)
 				if state.GOTOy < state.topBorder:
 					state.GOTOy = state.topBorder
-				if state.GOTOy > state.bottomBorder:
+				if state.GOTOy > (state.bottomBorder - state.spriteHeight):
 					state.GOTOy = (state.bottomBorder - state.spriteHeight)
 			# Collision Detection with Objects
 			collidedWith = checkForCollision(state, tiles)
@@ -290,7 +290,8 @@ def updateState(state, events, elapsedTicks, ticksToAnimate):
 		if ticksToAnimate >= frameDuration:
 			ticksToAnimate -= frameDuration
 			state = nextanimateFrame(state, ticksToAnimate)
-	#logPosition(state)
+	if state.tag == "WanderNPC":
+		logPosition(state)
 	return state, ticksToAnimate
 
 currentTicks = pygame.time.get_ticks()

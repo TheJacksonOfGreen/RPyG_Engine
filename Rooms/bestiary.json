@@ -1,0 +1,19 @@
+{
+	"enemies": [
+		{
+			"Name": "Mook",
+			"HP": 15,
+			"Attack": 3,
+			"Defense": 2,
+			"Speed": 7,
+			"Attack1Text": "Mook slashed with their sword!",
+			"Attack1Base": 2
+			"Attack1Bonus": "None"
+			"Attack1BonusDegree": 0
+			"Attack2Text": "Mook kicked up some sand!",
+			"Attack2Base": 0
+			"Attack2Bonus": "DEFDown"
+			"Attack2BonusDegree": 1
+		}
+	]
+}

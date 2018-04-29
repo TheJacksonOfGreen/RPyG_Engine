@@ -15,18 +15,18 @@ Pete_R_Walk2 = pygame.image.load("Images/Pete/R_Walk2.png")
 Pete_L_Walk2 = pygame.image.load("Images/Pete/L_Walk2.png")
 Pete_F_Walk2 = pygame.image.load("Images/Pete/F_Walk2.png")
 
-REDTOAD_B_Idle = pygame.image.load("Images/RedToad/B_Idle.png")
-REDTOAD_R_Idle = pygame.image.load("Images/RedToad/R_Idle.png")
-REDTOAD_L_Idle = pygame.image.load("Images/RedToad/L_Idle.png")
-REDTOAD_F_Idle = pygame.image.load("Images/RedToad/F_Idle.png")
-REDTOAD_B_Walk1 = pygame.image.load("Images/RedToad/B_Walk1.png")
-REDTOAD_R_Walk1 = pygame.image.load("Images/RedToad/R_Walk1.png")
-REDTOAD_L_Walk1 = pygame.image.load("Images/RedToad/L_Walk1.png")
-REDTOAD_F_Walk1 = pygame.image.load("Images/RedToad/F_Walk1.png")
-REDTOAD_B_Walk2 = pygame.image.load("Images/RedToad/B_Walk2.png")
-REDTOAD_R_Walk2 = pygame.image.load("Images/RedToad/R_Walk2.png")
-REDTOAD_L_Walk2 = pygame.image.load("Images/RedToad/L_Walk2.png")
-REDTOAD_F_Walk2 = pygame.image.load("Images/RedToad/F_Walk2.png")
+Alec_B_Idle = pygame.image.load("Images/Alec/B_Idle.png")
+Alec_R_Idle = pygame.image.load("Images/Alec/R_Idle.png")
+Alec_L_Idle = pygame.image.load("Images/Alec/L_Idle.png")
+Alec_F_Idle = pygame.image.load("Images/Alec/F_Idle.png")
+Alec_B_Walk1 = pygame.image.load("Images/Alec/B_Walk1.png")
+Alec_R_Walk1 = pygame.image.load("Images/Alec/R_Walk1.png")
+Alec_L_Walk1 = pygame.image.load("Images/Alec/L_Walk1.png")
+Alec_F_Walk1 = pygame.image.load("Images/Alec/F_Walk1.png")
+Alec_B_Walk2 = pygame.image.load("Images/Alec/B_Walk2.png")
+Alec_R_Walk2 = pygame.image.load("Images/Alec/R_Walk2.png")
+Alec_L_Walk2 = pygame.image.load("Images/Alec/L_Walk2.png")
+Alec_F_Walk2 = pygame.image.load("Images/Alec/F_Walk2.png")
 
 # Base Class for all characters.
 class Character():
@@ -43,8 +43,6 @@ class Character():
 	animateFrame = 0
 	framerate = 12
 	isMoving = False
-	# animations = []
-	# image = None
 	def nextAction(self):
 		pass
 
@@ -72,13 +70,24 @@ class Hero(Character):
 			currentEvents.append("Down")
 		return currentEvents
 
+# An NPC that stands still.
+class StandingNPC(Character):
+	image = Alec_F_Idle
+	tag = "StandingNPC"
+	x = 350
+	y = 350
+	GOTOx = 350
+	GOTOy = 350
+	def nextAction(self):
+		pass
+
 # An NPC that wanders around randomly within a box defined by the four border variables.
 class WanderNPC(Character):
-	animations = [[REDTOAD_B_Idle, REDTOAD_B_Walk1, REDTOAD_B_Idle, REDTOAD_B_Walk2], 
-				  [REDTOAD_R_Idle, REDTOAD_R_Walk1, REDTOAD_R_Idle, REDTOAD_R_Walk2], 
-				  [REDTOAD_L_Idle, REDTOAD_L_Walk1, REDTOAD_L_Idle, REDTOAD_L_Walk2], 
-				  [REDTOAD_F_Idle, REDTOAD_F_Walk1, REDTOAD_F_Idle, REDTOAD_F_Walk2]]
-	image = REDTOAD_R_Idle
+	animations = [[Alec_B_Idle, Alec_B_Walk1, Alec_B_Idle, Alec_B_Walk2], 
+				  [Alec_R_Idle, Alec_R_Walk1, Alec_R_Idle, Alec_R_Walk2], 
+				  [Alec_L_Idle, Alec_L_Walk1, Alec_L_Idle, Alec_L_Walk2], 
+				  [Alec_F_Idle, Alec_F_Walk1, Alec_F_Idle, Alec_F_Walk2]]
+	image = Alec_F_Idle
 	tag = "WanderNPC"
 	topBorder = 250
 	bottomBorder = 450
