@@ -21,8 +21,8 @@ def loadImagesFromCache(tiles):
 		if tile['image'] in imageCache.keys():
 			tile['image'] = imageCache[tile['image']]
 		else:
-			stringTypeTemplate = "string"
-			if type(tile['image']) == type(stringTypeTemplate):
+			typeTemplate = "string"
+			if type(tile['image']) == type(typeTemplate):
 				imageToBeAdded = pygame.image.load(tile['image'])
 			else:
 				imageToBeAdded = tile['image']
@@ -290,8 +290,8 @@ def updateState(state, events, elapsedTicks, ticksToAnimate):
 		if ticksToAnimate >= frameDuration:
 			ticksToAnimate -= frameDuration
 			state = nextanimateFrame(state, ticksToAnimate)
-	if state.tag == "WanderNPC":
-		logPosition(state)
+	# if state.tag == "WanderNPC":
+	# 	logPosition(state)
 	return state, ticksToAnimate
 
 currentTicks = pygame.time.get_ticks()

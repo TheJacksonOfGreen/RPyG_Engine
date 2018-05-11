@@ -74,12 +74,10 @@ class Hero(Character):
 class StandingNPC(Character):
 	image = Alec_F_Idle
 	tag = "StandingNPC"
-	x = 350
-	y = 350
-	GOTOx = 350
-	GOTOy = 350
-	def nextAction(self):
-		pass
+	x = 50
+	y = 320
+	GOTOx = 50
+	GOTOy = 320
 
 # An NPC that wanders around randomly within a box defined by the four border variables.
 class WanderNPC(Character):
