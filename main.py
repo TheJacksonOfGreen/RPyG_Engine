@@ -3,6 +3,7 @@
 import pygame, sys, json
 from basecharacters import Hero
 from basecharacters import WanderNPC
+from basecharacters import StandingNPC
 
 # DAMAGE FORMULA: int((ATTACKBASE*USERATTACK)-(TARGETDEF/2))
 
@@ -87,7 +88,8 @@ def tilesFromRoom(room):
 
 hero = Hero()
 wanderer = WanderNPC()
-objects = [wanderer]
+stander = StandingNPC()
+objects = [wanderer, stander]
 tiles = []
 
 def matchTilesToRoom(room):

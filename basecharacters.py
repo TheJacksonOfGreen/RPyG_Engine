@@ -14,7 +14,6 @@ Pete_B_Walk2 = pygame.image.load("Images/Pete/B_Walk2.png")
 Pete_R_Walk2 = pygame.image.load("Images/Pete/R_Walk2.png")
 Pete_L_Walk2 = pygame.image.load("Images/Pete/L_Walk2.png")
 Pete_F_Walk2 = pygame.image.load("Images/Pete/F_Walk2.png")
-
 Alec_B_Idle = pygame.image.load("Images/Alec/B_Idle.png")
 Alec_R_Idle = pygame.image.load("Images/Alec/R_Idle.png")
 Alec_L_Idle = pygame.image.load("Images/Alec/L_Idle.png")
@@ -27,6 +26,7 @@ Alec_B_Walk2 = pygame.image.load("Images/Alec/B_Walk2.png")
 Alec_R_Walk2 = pygame.image.load("Images/Alec/R_Walk2.png")
 Alec_L_Walk2 = pygame.image.load("Images/Alec/L_Walk2.png")
 Alec_F_Walk2 = pygame.image.load("Images/Alec/F_Walk2.png")
+James = pygame.image.load("Images/James.png")
 
 # Base Class for all characters.
 class Character():
@@ -68,16 +68,25 @@ class Hero(Character):
 			currentEvents.append("Right")
 		if keys[pygame.K_s]:
 			currentEvents.append("Down")
+		if keys[pygame.K_p]:
+			print "(" + str(self.x) + ", " + str(self.y) + ")"
 		return currentEvents
 
 # An NPC that stands still.
 class StandingNPC(Character):
-	image = Alec_F_Idle
+	animations = [[James, James, James, James], 
+				  [James, James, James, James], 
+				  [James, James, James, James], 
+				  [James, James, James, James]]
+	def nextAction(self):
+		currentEvents = []
+		return currentEvents
+	image = James
 	tag = "StandingNPC"
-	x = 50
-	y = 320
-	GOTOx = 50
-	GOTOy = 320
+	x = 530
+	y = 70
+	GOTOx = 530
+	GOTOy = 70
 
 # An NPC that wanders around randomly within a box defined by the four border variables.
 class WanderNPC(Character):
